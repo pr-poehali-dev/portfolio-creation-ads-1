@@ -6,6 +6,70 @@ import { Badge } from '@/components/ui/badge';
 
 const Index = () => {
   const [activeSection, setActiveSection] = useState('home');
+  const [selectedArticle, setSelectedArticle] = useState<number | null>(null);
+
+  const articles = [
+    {
+      id: 1,
+      category: 'Стратегии',
+      readTime: '5 мин чтения',
+      title: '10 ошибок в Яндекс.Директ',
+      description: 'Разбираем типичные ошибки при настройке контекстной рекламы и способы их избежать',
+      content: [
+        { type: 'paragraph', text: 'Контекстная реклама в Яндекс.Директ — мощный инструмент для привлечения клиентов. Однако даже опытные маркетологи допускают ошибки, которые приводят к слиянию бюджета и низкой эффективности кампаний.' },
+        { type: 'heading', text: '1. Отсутствие минус-слов' },
+        { type: 'paragraph', text: 'Одна из самых критичных ошибок. Без минус-слов ваши объявления показываются по нерелевантным запросам, что приводит к пустым тратам бюджета. Обязательно собирайте минус-слова до запуска и регулярно пополняйте список в процессе ведения кампании.' },
+        { type: 'heading', text: '2. Неправильная структура кампаний' },
+        { type: 'paragraph', text: 'Многие новички создают одну кампанию на все товары или услуги. Правильный подход — разделение по типам товаров, регионам и целевым аудиториям. Это позволяет точнее управлять бюджетами и ставками.' },
+        { type: 'heading', text: '3. Игнорирование качества объявлений' },
+        { type: 'paragraph', text: 'Показатель качества напрямую влияет на стоимость клика. Используйте ключевые слова в заголовках, добавляйте расширения, пишите уникальные тексты для каждой группы объявлений.' },
+        { type: 'heading', text: '4. Отсутствие UTM-меток' },
+        { type: 'paragraph', text: 'Без меток невозможно корректно отслеживать эффективность в Яндекс.Метрике. Настраивайте автоматическую простановку меток или создавайте их вручную для каждой кампании.' },
+        { type: 'heading', text: '5. Неоптимальные ставки' },
+        { type: 'paragraph', text: 'Слишком низкие ставки — нет показов, слишком высокие — сливается бюджет. Используйте автоматические стратегии или анализируйте аукцион, чтобы найти баланс между показами и стоимостью.' }
+      ]
+    },
+    {
+      id: 2,
+      category: 'Оптимизация',
+      readTime: '7 мин чтения',
+      title: 'Как снизить цену клика на 40%',
+      description: 'Практическое руководство по оптимизации ставок и повышению качества объявлений',
+      content: [
+        { type: 'paragraph', text: 'Снижение цены клика — одна из главных задач при оптимизации рекламных кампаний. В этой статье разберу проверенные способы, которые помогли моим клиентам снизить CPC на 30-50%.' },
+        { type: 'heading', text: 'Повышение показателя качества' },
+        { type: 'paragraph', text: 'Чем выше показатель качества, тем дешевле обходится клик. Для его повышения: добавьте ключевые слова в заголовки, улучшите релевантность посадочной страницы, используйте быстрые ссылки и уточнения.' },
+        { type: 'heading', text: 'Работа с минус-словами' },
+        { type: 'paragraph', text: 'Регулярно анализируйте поисковые запросы и добавляйте нерелевантные в минус-слова. Это отсечет нецелевой трафик и автоматически снизит среднюю стоимость клика.' },
+        { type: 'heading', text: 'Корректировки ставок' },
+        { type: 'paragraph', text: 'Используйте корректировки по времени, устройствам и регионам. Снижайте ставки в неконверсионные часы и повышайте в пиковое время. Анализируйте статистику по устройствам — возможно, на мобильных конверсия выше.' },
+        { type: 'heading', text: 'Автоматические стратегии' },
+        { type: 'paragraph', text: 'После накопления статистики переходите на автоматические стратегии. «Оптимизация кликов» или «Недельный бюджет» помогут снизить среднюю стоимость клика, сохраняя объем трафика.' },
+        { type: 'heading', text: 'A/B тестирование объявлений' },
+        { type: 'paragraph', text: 'Создавайте минимум 2-3 объявления в каждой группе. Тестируйте разные заголовки, тексты, призывы к действию. Более кликабельные объявления получают более высокий CTR, что снижает цену клика.' }
+      ]
+    },
+    {
+      id: 3,
+      category: 'Аналитика',
+      readTime: '6 мин чтения',
+      title: 'Настройка целей в Метрике',
+      description: 'Пошаговая инструкция по настройке конверсий и отслеживанию эффективности рекламы',
+      content: [
+        { type: 'paragraph', text: 'Правильная настройка целей в Яндекс.Метрике — фундамент эффективной работы с рекламой. Без четкого отслеживания конверсий невозможно оценить реальную отдачу от вложений.' },
+        { type: 'heading', text: 'Типы целей в Метрике' },
+        { type: 'paragraph', text: 'Яндекс.Метрика поддерживает несколько типов целей: посещение страницы, количество просмотров, JavaScript-событие, составная цель. Для большинства бизнесов достаточно первых двух типов.' },
+        { type: 'heading', text: 'Настройка цели «Посещение страницы»' },
+        { type: 'paragraph', text: 'Это самый простой тип цели. Используется для отслеживания посещения страницы благодарности после заявки или покупки. Укажите URL страницы или часть URL, добавьте название цели и сохраните.' },
+        { type: 'heading', text: 'Составные цели для сложных воронок' },
+        { type: 'paragraph', text: 'Если у вас многоэтапная воронка (например, добавление в корзину → оформление → оплата), используйте составные цели. Они позволяют отслеживать последовательность действий пользователя.' },
+        { type: 'heading', text: 'Связка с Яндекс.Директом' },
+        { type: 'paragraph', text: 'После создания целей обязательно добавьте их в настройки кампаний Директа. Это позволит использовать автоматические стратегии на основе конверсий и получать данные о стоимости целевого действия.' },
+        { type: 'heading', text: 'Анализ эффективности' },
+        { type: 'paragraph', text: 'Регулярно проверяйте отчеты «Источники → Директ» в Метрике. Смотрите на конверсию по кампаниям, стоимость цели, окупаемость вложений. Это поможет вовремя скорректировать стратегию.' }
+      ]
+    }
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -357,56 +421,88 @@ const Index = () => {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            <Card className="hover:shadow-lg transition-shadow cursor-pointer">
-              <div className="h-48 bg-gradient-to-br from-accent/20 to-primary/20"></div>
-              <CardHeader>
-                <div className="flex items-center gap-2 mb-2">
-                  <Badge variant="outline">Стратегии</Badge>
-                  <span className="text-sm text-muted-foreground">5 мин чтения</span>
-                </div>
-                <CardTitle>10 ошибок в Яндекс.Директ</CardTitle>
-                <CardDescription>
-                  Разбираем типичные ошибки при настройке контекстной рекламы и способы их избежать
-                </CardDescription>
-              </CardHeader>
-            </Card>
+          {selectedArticle === null ? (
+            <>
+              <div className="grid md:grid-cols-3 gap-8">
+                {articles.map((article, index) => (
+                  <Card 
+                    key={article.id}
+                    className="hover:shadow-lg transition-shadow cursor-pointer"
+                    onClick={() => setSelectedArticle(article.id)}
+                  >
+                    <div className={`h-48 bg-gradient-to-br ${
+                      index === 0 ? 'from-accent/20 to-primary/20' :
+                      index === 1 ? 'from-primary/20 to-accent/20' :
+                      'from-accent/30 to-primary/10'
+                    }`}></div>
+                    <CardHeader>
+                      <div className="flex items-center gap-2 mb-2">
+                        <Badge variant="outline">{article.category}</Badge>
+                        <span className="text-sm text-muted-foreground">{article.readTime}</span>
+                      </div>
+                      <CardTitle>{article.title}</CardTitle>
+                      <CardDescription>
+                        {article.description}
+                      </CardDescription>
+                    </CardHeader>
+                  </Card>
+                ))}
+              </div>
 
-            <Card className="hover:shadow-lg transition-shadow cursor-pointer">
-              <div className="h-48 bg-gradient-to-br from-primary/20 to-accent/20"></div>
-              <CardHeader>
-                <div className="flex items-center gap-2 mb-2">
-                  <Badge variant="outline">Оптимизация</Badge>
-                  <span className="text-sm text-muted-foreground">7 мин чтения</span>
-                </div>
-                <CardTitle>Как снизить цену клика на 40%</CardTitle>
-                <CardDescription>
-                  Практическое руководство по оптимизации ставок и повышению качества объявлений
-                </CardDescription>
-              </CardHeader>
-            </Card>
+              <div className="text-center mt-12">
+                <Button variant="outline" size="lg">
+                  Все статьи блога
+                  <Icon name="ArrowRight" className="ml-2" size={18} />
+                </Button>
+              </div>
+            </>
+          ) : (
+            <div className="max-w-4xl mx-auto">
+              <Button 
+                variant="ghost" 
+                className="mb-8"
+                onClick={() => setSelectedArticle(null)}
+              >
+                <Icon name="ArrowLeft" className="mr-2" size={18} />
+                Назад к статьям
+              </Button>
 
-            <Card className="hover:shadow-lg transition-shadow cursor-pointer">
-              <div className="h-48 bg-gradient-to-br from-accent/30 to-primary/10"></div>
-              <CardHeader>
-                <div className="flex items-center gap-2 mb-2">
-                  <Badge variant="outline">Аналитика</Badge>
-                  <span className="text-sm text-muted-foreground">6 мин чтения</span>
-                </div>
-                <CardTitle>Настройка целей в Метрике</CardTitle>
-                <CardDescription>
-                  Пошаговая инструкция по настройке конверсий и отслеживанию эффективности рекламы
-                </CardDescription>
-              </CardHeader>
-            </Card>
-          </div>
+              {articles.filter(a => a.id === selectedArticle).map(article => (
+                <article key={article.id} className="prose prose-lg max-w-none">
+                  <div className="mb-8">
+                    <Badge className="mb-4">{article.category}</Badge>
+                    <h1 className="text-4xl font-bold mb-4">{article.title}</h1>
+                    <div className="flex items-center gap-4 text-muted-foreground">
+                      <span className="flex items-center gap-2">
+                        <Icon name="Clock" size={16} />
+                        {article.readTime}
+                      </span>
+                    </div>
+                  </div>
 
-          <div className="text-center mt-12">
-            <Button variant="outline" size="lg">
-              Все статьи блога
-              <Icon name="ArrowRight" className="ml-2" size={18} />
-            </Button>
-          </div>
+                  <div className="space-y-6">
+                    {article.content.map((block, idx) => (
+                      block.type === 'heading' ? (
+                        <h2 key={idx} className="text-2xl font-bold mt-8 mb-4">{block.text}</h2>
+                      ) : (
+                        <p key={idx} className="text-muted-foreground leading-relaxed">{block.text}</p>
+                      )
+                    ))}
+                  </div>
+
+                  <div className="mt-12 p-6 bg-accent/10 rounded-lg">
+                    <h3 className="text-xl font-bold mb-2">Нужна помощь с настройкой рекламы?</h3>
+                    <p className="text-muted-foreground mb-4">Свяжитесь со мной для консультации</p>
+                    <Button className="bg-accent hover:bg-accent/90">
+                      Связаться
+                    </Button>
+                  </div>
+                </article>
+              ))}
+            </div>
+          )}
+
+
         </div>
       </section>
 
