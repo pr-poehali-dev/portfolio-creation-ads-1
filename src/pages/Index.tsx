@@ -3,10 +3,12 @@ import Icon from '@/components/ui/icon';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import ContactForm from '@/components/ContactForm';
 
 const Index = () => {
   const [activeSection, setActiveSection] = useState('home');
   const [selectedArticle, setSelectedArticle] = useState<number | null>(null);
+  const [isContactFormOpen, setIsContactFormOpen] = useState(false);
 
   const articles = [
     {
@@ -118,7 +120,7 @@ const Index = () => {
                 </button>
               ))}
             </div>
-            <Button className="bg-accent hover:bg-accent/90">
+            <Button className="bg-accent hover:bg-accent/90" onClick={() => setIsContactFormOpen(true)}>
               Связаться
             </Button>
           </div>
@@ -493,7 +495,7 @@ const Index = () => {
                   <div className="mt-12 p-6 bg-accent/10 rounded-lg">
                     <h3 className="text-xl font-bold mb-2">Нужна помощь с настройкой рекламы?</h3>
                     <p className="text-muted-foreground mb-4">Свяжитесь со мной для консультации</p>
-                    <Button className="bg-accent hover:bg-accent/90">
+                    <Button className="bg-accent hover:bg-accent/90" onClick={() => setIsContactFormOpen(true)}>
                       Связаться
                     </Button>
                   </div>
@@ -551,6 +553,8 @@ const Index = () => {
           </div>
         </div>
       </footer>
+
+      <ContactForm open={isContactFormOpen} onOpenChange={setIsContactFormOpen} />
     </div>
   );
 };
