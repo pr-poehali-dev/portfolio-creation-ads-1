@@ -88,8 +88,8 @@ const Index = () => {
               <div className="relative">
                 <div className="absolute inset-0 bg-gradient-to-r from-accent/20 to-primary/20 rounded-3xl blur-3xl"></div>
                 <img 
-                  src="https://cdn.poehali.dev/projects/3f317af0-e15b-4032-a58a-e5b7af62697a/files/0751ee71-3d57-4338-b2ab-f79cd8e2cac2.jpg" 
-                  alt="Яндекс.Директ" 
+                  src="https://cdn.poehali.dev/projects/3f317af0-e15b-4032-a58a-e5b7af62697a/files/e21fa147-d799-499d-9e7c-f607c0889ab4.jpg" 
+                  alt="Яндекс Метрика с растущими показателями" 
                   className="relative rounded-2xl shadow-2xl w-full"
                 />
               </div>
